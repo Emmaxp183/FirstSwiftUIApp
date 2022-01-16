@@ -8,20 +8,26 @@
 import SwiftUI
 
 struct listView: View {
+    @State var modal = false
+   
     var body: some View {
         NavigationView {
-            ScrollView { 
-               ForEach(0 ..< 4) { item in
+            
+           List(0 ..< 4) { item in
                     ListDesignView()
+                       .sheet(isPresented: $modal, content:{
+                           DetailView()})
+                       .onTapGesture {
+                           modal.toggle()
+                       }
                         
                     
                         
                         .navigationTitle("Courses")
                 }
-            }
-           
-        }.padding()
             
+           
+        }
         }
         
     }
